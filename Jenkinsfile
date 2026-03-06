@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven_3.9'
-        jdk 'JDK_17'
+        maven 'Maven'    // must match Jenkins tool config
+        jdk 'JDK17'      // must match Jenkins tool config
     }
 
     stages {
@@ -28,9 +28,14 @@ pipeline {
 
         stage('Publish Reports') {
             steps {
-                publishHTML([reportDir: 'target/surefire-reports',
-                             reportFiles: 'index.html',
-                             reportName: 'TestNG Report'])
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'target/surefire-reports',
+                    reportFiles: 'index.html',
+                    reportName: 'TestNG Report'
+                ])
             }
         }
     }
