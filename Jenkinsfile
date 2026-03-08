@@ -4,6 +4,8 @@ pipeline {
     tools {
         maven 'Maven1'    // must match Jenkins tool config
         jdk 'jdk1'      // must match Jenkins tool config
+         git 'DefaultGit'
+        
     }
 
     stages {
